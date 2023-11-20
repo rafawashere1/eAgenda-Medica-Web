@@ -5,6 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -17,14 +19,18 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule,
+    MatInputModule,
   ],
   exports: [
     CardHoverDirective,
     MatCardModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule,
+    MatInputModule,
   ]
 })
 export class SharedModule { }

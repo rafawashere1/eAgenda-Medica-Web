@@ -6,6 +6,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: 'doctors',
+    loadChildren: () => import('./views/doctors/doctors.module').then((m) => m.DoctorsModule)
   }
 ];
 

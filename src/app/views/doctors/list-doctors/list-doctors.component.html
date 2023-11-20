@@ -1,0 +1,50 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8 d-grid gap-3 ps-0">
+    <h1 class="fs-2">Listar Médicos</h1>
+
+    <button
+      routerLink="/doctors/add"
+      mat-raised-button
+      class="me-auto py-4 px-5 fs-6"
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+      Novo Médico
+    </button>
+
+    <div class="row gap-3">
+      <mat-card
+        *ngFor="let doctor of doctors$ | async"
+        appCardHover
+        class="col-12 col-md-6 col-lg-3"
+      >
+        <mat-card-header>
+          <mat-card-title>
+            <span>{{ doctor.name }}</span>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content> </mat-card-content>
+
+        <mat-card-actions class="pe-0" align="end">
+          <button
+            mat-icon-button
+            matTooltip="Editar"
+            color="primary"
+            routerLink="/doctors/update{{ doctor.id }}"
+          >
+            <mat-icon>edit_note</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Excluir"
+            color="warn"
+            routerLink="/doctors/remove{{ doctor.id }}"
+          >
+            <mat-icon>delete_sweep</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

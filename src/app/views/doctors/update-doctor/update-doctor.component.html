@@ -1,0 +1,35 @@
+<div class="row justify-content-center align-items-center mt-5">
+  <div class="col-md-5">
+    <h1 class="fs-2">Editar Médico</h1>
+
+    <form [formGroup]="form!" (ngSubmit)="save()" class="d-grid mt-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input type="text" formControlName="title" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>CRM</mat-label>
+        <input type="text" formControlName="crm" matInput />
+      </mat-form-field>
+
+      <div class="d-flex justify-content-end gap-2 mt-5">
+        <button
+          type="submit"
+          class="py-3 px-5"
+          color="primary"
+          mat-raised-button
+        >
+          Salvar
+        </button>
+        <button
+          routerLink="/doctors/list"
+          class="py-3 px-5"
+          color="warn"
+          mat-stroked-button
+        >
+          Voltar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

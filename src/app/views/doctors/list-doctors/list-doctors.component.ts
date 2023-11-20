@@ -15,7 +15,7 @@ export class ListDoctorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.doctors$ = this.route.data.pipe(
-      map((dados) => dados['doctors'])
+      map((data) => data['doctors'])
     );
   }
 }

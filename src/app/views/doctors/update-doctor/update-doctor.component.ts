@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { DoctorsService } from '../services/doctors.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorFormsViewModel } from '../models/doctor-forms.view-model';
+import { DoctorsService } from '../services/doctors.service';
 
 @Component({
-  selector: 'app-add-doctor',
-  templateUrl: './add-doctor.component.html',
-  styleUrls: ['./add-doctor.component.scss']
+  selector: 'app-update-doctor',
+  templateUrl: './update-doctor.component.html',
+  styleUrls: ['./update-doctor.component.scss']
 })
-export class AddDoctorComponent implements OnInit {
+export class UpdateDoctorComponent implements OnInit {
   form?: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private doctorsService: DoctorsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -23,10 +24,15 @@ export class AddDoctorComponent implements OnInit {
       title: [''],
       crm: ['']
     });
+
+    const doctor = this.route.snapshot.data['doctor'];
+    this.form.patchValue(doctor);
   }
 
   save(): void {
-    this.doctorsService.add(this.form?.value).subscribe({
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    this.doctorsService.update(id, this.form?.value).subscribe({
       next: (res) => this.handleSuccess(res),
       error: (err) => this.handleFail(err),
     });

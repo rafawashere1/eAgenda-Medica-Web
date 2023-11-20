@@ -8,13 +8,15 @@ import { DoctorsService } from './services/doctors.service';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateDoctorComponent } from './update-doctor/update-doctor.component';
+import { RemoveDoctorComponent } from './remove-doctor/remove-doctor.component';
 
 
 @NgModule({
   declarations: [
     ListDoctorsComponent,
     AddDoctorComponent,
-    UpdateDoctorComponent
+    UpdateDoctorComponent,
+    RemoveDoctorComponent
   ],
   imports: [
     CommonModule,

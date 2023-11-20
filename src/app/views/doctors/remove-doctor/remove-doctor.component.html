@@ -1,0 +1,70 @@
+<div class="row justify-content-center align-items-center mt-5">
+  <div class="col-md-5">
+    <h1 class="fs-2">Excluir Médico</h1>
+
+    <p class="fs-5">
+      Você tem certeza que deseja excluir o seguinte médico?
+    </p>
+
+    <mat-list *ngIf="doctor$ | async as doctor">
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span>Id:</span>
+          <span>{{ doctor.id }}</span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <div class="d-flex justify-content-between">
+          <span>Título:</span>
+          <span>{{ doctor.name }}</span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <div class="d-flex justify-content-between">
+        <span>CRM:</span>
+        <span>{{ doctor.crm }}</span>
+      </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <div class="d-flex justify-content-between">
+      <span>Última atividade há:</span>
+      <span>{{ doctor.lastActivity }}</span>
+    </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+<!-- <mat-list-item>
+  <div class="d-flex justify-content-between">
+    <span>Título:</span>
+    <span>{{ doctor.CurrentActivity }}</span>
+  </div>
+</mat-list-item>
+<mat-divider></mat-divider> -->
+</mat-list>
+
+    <div class="d-flex justify-content-end gap-2 mt-5">
+      <button
+        (click)="confirm()"
+        class="py-3 px-5"
+        color="warn"
+        mat-raised-button
+      >
+        Confirmar
+      </button>
+      <button
+        routerLink="/doctors/list"
+        class="py-3 px-5"
+        color="primary"
+        mat-stroked-button
+      >
+        Voltar
+      </button>
+    </div>
+  </div>
+</div>

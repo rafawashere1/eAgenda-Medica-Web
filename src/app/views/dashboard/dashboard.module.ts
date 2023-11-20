@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MatCardModule,
-    MatIconModule
+    SharedModule,
   ]
 })
 export class DashboardModule { }

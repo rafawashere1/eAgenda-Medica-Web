@@ -36,9 +36,7 @@ export class DoctorsService {
     const url = `${this.API_URL}/${id}`;
   
     return this.http.get<any>(url)
-      .pipe(
-        tap((data) => console.log('Data from getById request:', data)),
-        map((res) => res.data),
+      .pipe(map((res) => res.data),
         catchError((err: HttpErrorResponse) => this.handleHttpError(err))
       );
   }
@@ -51,16 +49,8 @@ export class DoctorsService {
 
   getFullDoctorById(id: string): Observable<DoctorDetailViewModel> {
     return this.http.get<any>(`${this.API_URL}/full-visualization/${id}`)
-      .pipe(
-        map((res) => {
-          console.log('Doctor data retrieved successfully', res.data); // Add your log statement here
-          return res.data;
-        }),
-        catchError((err: HttpErrorResponse) => {
-          console.error('Error retrieving doctor data', err); // Add your log statement here
-          return this.handleHttpError(err);
-        })
-      );
+      .pipe(map((res) => res.data),
+      catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
   private handleHttpError(error: HttpErrorResponse) {

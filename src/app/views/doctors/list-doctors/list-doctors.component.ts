@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map} from 'rxjs';
 import { DoctorListViewModel } from '../models/doctor-list.view-model';
 
 @Component({
@@ -15,7 +15,7 @@ export class ListDoctorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.doctors$ = this.route.data.pipe(
-      map((data) => data['doctors'])
+      map((data) => data['doctor'])
     );
   }
 }

@@ -12,7 +12,7 @@ const doctorFormsResolver = (route: ActivatedRouteSnapshot) => {
 
 const doctorDetailResolver = (route: ActivatedRouteSnapshot) => {
   return inject(DoctorsService).getFullDoctorById(
-    route.queryParamMap.get('id')!
+    route.paramMap.get('id')!
   );
 };
 

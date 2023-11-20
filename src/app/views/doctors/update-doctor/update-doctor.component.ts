@@ -21,7 +21,7 @@ export class UpdateDoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      title: [''],
+      name: [''],
       crm: ['']
     });
 

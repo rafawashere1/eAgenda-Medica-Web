@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DoctorFormsViewModel } from '../models/doctor-forms.view-model';
 import { DoctorListViewModel } from '../models/doctor-list.view-model';
@@ -13,13 +13,17 @@ export class DoctorsService {
   constructor(private http: HttpClient) {}
 
   add(doctor: DoctorFormsViewModel): Observable<DoctorFormsViewModel> {
-    return this.http.post<DoctorFormsViewModel>(this.API_URL, doctor);
+    return this.http.post<any>(this.API_URL, doctor)
+      .pipe(map((res) => res.data),
+    catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
   update(id: string, doctor: DoctorFormsViewModel): Observable<DoctorFormsViewModel> {
     const url = `${this.API_URL}/${id}`;
 
-    return this.http.put<DoctorFormsViewModel>(url, doctor);
+    return this.http.put<any>(url, doctor)
+    .pipe(map((res) => res.data),
+    catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
   remove(id: string): Observable<any> {
@@ -30,18 +34,33 @@ export class DoctorsService {
 
   getById(id: string): Observable<DoctorFormsViewModel> {
     const url = `${this.API_URL}/${id}`;
-
-    return this.http.get<DoctorFormsViewModel>(url);
+  
+    return this.http.get<any>(url)
+      .pipe(
+        tap((data) => console.log('Data from getById request:', data)),
+        map((res) => res.data),
+        catchError((err: HttpErrorResponse) => this.handleHttpError(err))
+      );
   }
 
   GetAll(): Observable<DoctorListViewModel[]> {
-    return this.http.get<DoctorListViewModel[]>(this.API_URL);
+    return this.http.get<any>(this.API_URL)
+    .pipe(map((res) => res.data),
+    catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
   getFullDoctorById(id: string): Observable<DoctorDetailViewModel> {
     return this.http.get<any>(`${this.API_URL}/full-visualization/${id}`)
-      .pipe(map((res) => res.data),
-      catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
+      .pipe(
+        map((res) => {
+          console.log('Doctor data retrieved successfully', res.data); // Add your log statement here
+          return res.data;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          console.error('Error retrieving doctor data', err); // Add your log statement here
+          return this.handleHttpError(err);
+        })
+      );
   }
 
   private handleHttpError(error: HttpErrorResponse) {

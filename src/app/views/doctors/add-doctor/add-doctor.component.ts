@@ -20,7 +20,7 @@ export class AddDoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      title: [''],
+      name: [''],
       crm: ['']
     });
   }

@@ -20,6 +20,15 @@ export class RemoveDoctorComponent {
 
   ngOnInit(): void {
     this.doctor$ = this.route.data.pipe(map((res) => res['doctor']));
+  
+    this.doctor$.subscribe({
+      next: (doctor) => {
+        console.log('Doctor data retrieved successfully', doctor); // Add your log statement here
+      },
+      error: (err) => {
+        console.error('Error retrieving doctor data', err); // Add your log statement here
+      },
+    });
   }
 
   confirm(): void {

@@ -4,20 +4,26 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ListActivitiesComponent } from './list-activities/list-activities.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DoctorsModule } from '../doctors/doctors.module';
 import { ActivitiesService } from './services/activities.service';
+import { AddActivityComponent } from './add-activity/add-activity.component';
 
 
 @NgModule({
   declarations: [
-    ListActivitiesComponent
+    ListActivitiesComponent,
+    AddActivityComponent
   ],
   imports: [
     SharedModule,
     ActivitiesRoutingModule,
     DoctorsModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatNativeDateModule,
+    MatAutocompleteModule
   ],
   providers: [
     ActivitiesService

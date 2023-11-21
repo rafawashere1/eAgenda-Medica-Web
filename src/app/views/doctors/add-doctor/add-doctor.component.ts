@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DoctorsService } from '../services/doctors.service';
 import { DoctorFormsViewModel } from '../models/doctor-forms.view-model';
@@ -22,8 +22,8 @@ export class AddDoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: [''],
-      crm: ['']
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      crm: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 

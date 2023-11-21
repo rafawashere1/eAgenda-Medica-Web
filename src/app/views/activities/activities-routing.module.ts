@@ -2,6 +2,8 @@ import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListActivitiesComponent } from './list-activities/list-activities.component';
 import { ActivitiesService } from './services/activities.service';
+import { AddActivityComponent } from './add-activity/add-activity.component';
+import { doctorListResolver } from '../doctors/services/list-doctors.resolver';
 
 // const activityFormsResolver = (route: ActivatedRouteSnapshot) => {
 //   return inject(ActivitiesService).getById(route.paramMap.get('id')!)
@@ -28,10 +30,11 @@ const routes: Routes = [
     component: ListActivitiesComponent,
     resolve: { activity: activityListResolver }
   },
-  // {
-  //   path: 'add',
-  //   component: AddDoctorComponent,
-  // },
+  {
+    path: 'add',
+    component: AddActivityComponent,
+    resolve: { doctor: doctorListResolver }
+  },
   // {
   //   path: 'update/:id',
   //   component: UpdateDoctorComponent,

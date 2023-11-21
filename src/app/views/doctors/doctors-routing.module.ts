@@ -5,6 +5,7 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { UpdateDoctorComponent } from './update-doctor/update-doctor.component';
 import { DoctorsService } from './services/doctors.service';
 import { RemoveDoctorComponent } from './remove-doctor/remove-doctor.component';
+import { doctorListResolver } from './services/list-doctors.resolver';
 
 const doctorFormsResolver = (route: ActivatedRouteSnapshot) => {
   return inject(DoctorsService).getById(route.paramMap.get('id')!)
@@ -14,10 +15,6 @@ const doctorDetailResolver = (route: ActivatedRouteSnapshot) => {
   return inject(DoctorsService).getFullDoctorById(
     route.paramMap.get('id')!
   );
-};
-
-const doctorListResolver = () => {
-  return inject(DoctorsService).GetAll();
 };
 
 const routes: Routes = [

@@ -1,1 +1,1 @@
-export type Theme = 'primary' | 'warn';
+export type Theme = 'primary' | 'accent' | 'warn';

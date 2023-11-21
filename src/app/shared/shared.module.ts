@@ -7,8 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { MatChipsModule } from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,21 +16,26 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
     MatListModule,
     MatButtonModule,
     MatTooltipModule,
     MatInputModule,
+    MatChipsModule
   ],
   exports: [
+    CommonModule,
     CardHoverDirective,
+    ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
     MatListModule,
     MatButtonModule,
     MatTooltipModule,
     MatInputModule,
+    MatChipsModule
   ]
 })
 export class SharedModule { }

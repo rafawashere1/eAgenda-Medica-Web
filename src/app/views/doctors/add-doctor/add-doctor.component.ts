@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DoctorsService } from '../services/doctors.service';
 import { DoctorFormsViewModel } from '../models/doctor-forms.view-model';
+import { NotificationService } from 'src/app/core/notification/services/notification.service';
 
 @Component({
   selector: 'app-add-doctor',
@@ -15,7 +16,8 @@ export class AddDoctorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private doctorsService: DoctorsService,
-    private router: Router
+    private router: Router,
+    private notification: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -33,10 +35,12 @@ export class AddDoctorComponent implements OnInit {
   }
 
   handleSuccess(res: DoctorFormsViewModel) {
+    this.notification.success(`O médico ${res.name} foi cadastrado com sucesso`)
+
     this.router.navigate(['/doctors', 'list']);
   }
 
   handleFail(err: any) {
-    console.error('Error:', err);
+    this.notification.error(err.message)
   }
 }

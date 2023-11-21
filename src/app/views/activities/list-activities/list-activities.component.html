@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-md-11 d-grid gap-3 ps-0">
+    <h1 class="fs-2">Listar Atividades</h1>
+
+    <button
+      routerLink="/activities/add"
+      mat-raised-button
+      class="me-auto py-4 px-5 fs-6"
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+      Nova Atividade
+    </button>
+
+    <div class="row gap-3">
+      <mat-card
+        *ngFor="let activity of activities$ | async"
+        appCardHover
+        class="col-12 col-md-6 col-lg-4 col-xxl-3"
+      >
+        <mat-card-header>
+          <mat-card-title>
+            <span>{{ activity.type }}</span>
+          </mat-card-title>
+
+          <mat-chip
+            [ngSwitch]="activity.theme"
+            class="ms-auto"
+            [highlighted]="true"
+            [color]="activity.theme"
+          >
+            <span *ngSwitchCase="'primary'">Consulta</span>
+            <span *ngSwitchCase="'warn'">Cirurgia</span>
+          </mat-chip>
+        </mat-card-header>
+
+        <mat-card-content class="mt-3 fs-6">
+          <span>Horário de início: {{ activity.startTime }}</span> <br>
+          <span>Horário de término: {{ activity.endTime }}</span>
+        </mat-card-content>
+
+        <mat-card-actions class="pe-0" align="end">
+          <button
+            mat-icon-button
+            matTooltip="Editar"
+            color="primary"
+            routerLink="/activities/update/{{ activity.id }}"
+          >
+            <mat-icon>edit_note</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Excluir"
+            color="warn"
+            routerLink="/activities/remove/{{ activity.id }}"
+          >
+            <mat-icon>delete_sweep</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

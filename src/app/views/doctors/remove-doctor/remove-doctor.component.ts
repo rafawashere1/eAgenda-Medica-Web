@@ -3,6 +3,7 @@ import { DoctorDetailViewModel } from '../models/doctor-detail.view-model';
 import { DoctorsService } from '../services/doctors.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
+import { NotificationService } from 'src/app/core/notification/services/notification.service';
 
 @Component({
   selector: 'app-remove-doctor',
@@ -15,7 +16,8 @@ export class RemoveDoctorComponent {
   constructor(
     private doctorsService: DoctorsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notification: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -35,10 +37,12 @@ export class RemoveDoctorComponent {
   }
 
   handleSuccess() {
+    this.notification.success(`O médico foi excluído com sucesso`)
+
     this.router.navigate(['/doctors', 'list']);
   }
 
   handleFail(err: any) {
-    console.error('Error:', err);
+    this.notification.error(err.message)
   }
 }

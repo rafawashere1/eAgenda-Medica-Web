@@ -6,17 +6,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { DoctorsModule } from '../doctors/doctors.module';
 import { ActivitiesService } from './services/activities.service';
 import { AddActivityComponent } from './add-activity/add-activity.component';
 import { UpdateActivityComponent } from './update-activity/update-activity.component';
+import { RemoveActivityComponent } from './remove-activity/remove-activity.component';
 
 
 @NgModule({
   declarations: [
     ListActivitiesComponent,
     AddActivityComponent,
-    UpdateActivityComponent
+    UpdateActivityComponent,
+    RemoveActivityComponent
   ],
   imports: [
     SharedModule,
@@ -25,7 +28,8 @@ import { UpdateActivityComponent } from './update-activity/update-activity.compo
     MatSelectModule,
     MatRadioModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule
   ],
   providers: [
     ActivitiesService

@@ -1,51 +1,57 @@
 <div class="row justify-content-center align-items-center mt-5">
   <div class="col-md-5">
-    <h1 class="fs-2">Excluir Médico</h1>
+    <h1 class="fs-2">Excluir Atividade</h1>
 
     <p class="fs-5">
-      Você tem certeza que deseja excluir o seguinte médico?
+      Você tem certeza que deseja excluir a seguinte atividade?
     </p>
 
-    <mat-list *ngIf="doctor$ | async as doctor">
+    <mat-list *ngIf="activity$ | async as activity">
       <mat-list-item>
         <div class="d-flex justify-content-between">
           <span>Id:</span>
-          <span>{{ doctor.id }}</span>
+          <span>{{ activity.id }}</span>
         </div>
       </mat-list-item>
       <mat-divider></mat-divider>
 
       <mat-list-item>
         <div class="d-flex justify-content-between">
-          <span>Nome:</span>
-          <span>{{ doctor.name }}</span>
+          <span>Tipo:</span>
+          <span>{{ activity.type }}</span>
         </div>
       </mat-list-item>
       <mat-divider></mat-divider>
 
     <mat-list-item>
       <div class="d-flex justify-content-between">
-        <span>CRM:</span>
-        <span>{{ doctor.crm }}</span>
+        <span>Horário de Início:</span>
+        <span>{{ activity.startTime }}</span>
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>
 
   <mat-list-item>
     <div class="d-flex justify-content-between">
-      <span>Última atividade há:</span>
-      <span>{{ doctor.lastActivity }}</span>
+      <span>Horário de Término:</span>
+      <span>{{ activity.endTime }}</span>
     </div>
   </mat-list-item>
-  <mat-divider></mat-divider>
+  <mat-divider class="mb-3"></mat-divider>
 
-<mat-list-item>
-  <div class="d-flex justify-content-between">
-    <span>Está em alguma atividade?</span>
-    <span>{{ doctor.currentActivity ? 'Sim' : 'Não' }}</span>
-  </div>
-</mat-list-item>
-<mat-divider></mat-divider>
+  <mat-expansion-panel *ngIf="activity.doctors && activity.doctors.length > 0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Médicos
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-divider></mat-divider>
+        <mat-list-item *ngFor="let doctor of activity.doctors" class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <mat-label>{{ doctor.name }}</mat-label>
+          </div>
+        </mat-list-item>
+  </mat-expansion-panel>
 </mat-list>
 
     <div class="d-flex justify-content-end gap-2 mt-5">
@@ -58,7 +64,7 @@
         Confirmar
       </button>
       <button
-        routerLink="/doctors/list"
+        routerLink="/activities/list"
         class="py-3 px-5"
         color="primary"
         mat-stroked-button

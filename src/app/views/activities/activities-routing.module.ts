@@ -5,13 +5,14 @@ import { ActivitiesService } from './services/activities.service';
 import { AddActivityComponent } from './add-activity/add-activity.component';
 import { doctorListResolver } from '../doctors/services/list-doctors.resolver';
 import { UpdateActivityComponent } from './update-activity/update-activity.component';
+import { RemoveActivityComponent } from './remove-activity/remove-activity.component';
 
 const activityFormsResolver = (route: ActivatedRouteSnapshot) => {
   return inject(ActivitiesService).getById(route.paramMap.get('id')!)
 }
 
 const activityDetailResolver = (route: ActivatedRouteSnapshot) => {
-  return inject(ActivitiesService).getFullDoctorById(
+  return inject(ActivitiesService).getFullActivityById(
     route.paramMap.get('id')!
   );
 };
@@ -43,11 +44,11 @@ const routes: Routes = [
       activity: activityFormsResolver,
       doctor: doctorListResolver}
   },
-  // {
-  //   path: 'remove/:id',
-  //   component: RemoveDoctorComponent,
-  //   resolve: { doctor: doctorDetailResolver}
-  // },
+  {
+    path: 'remove/:id',
+    component: RemoveActivityComponent,
+    resolve: { activity: activityDetailResolver}
+  },
 ];
 
 @NgModule({

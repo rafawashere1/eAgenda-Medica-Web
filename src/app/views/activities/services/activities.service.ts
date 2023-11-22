@@ -47,7 +47,7 @@ export class ActivitiesService {
     catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
-  getFullDoctorById(id: string): Observable<ActivityDetailViewModel> {
+  getFullActivityById(id: string): Observable<ActivityDetailViewModel> {
     return this.http.get<any>(`${this.API_URL}/full-visualization/${id}`)
       .pipe(map((res) => res.data),
       catchError((err: HttpErrorResponse) => this.handleHttpError(err)));

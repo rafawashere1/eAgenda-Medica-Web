@@ -1,6 +1,6 @@
 <div class="row justify-content-center align-items-center mt-5">
   <div class="col-md-5">
-    <h1 class="fs-2">Inserir Nova Atividade</h1>
+    <h1 class="fs-2">Editar Atividade</h1>
 
     <form [formGroup]="form!" (ngSubmit)="save()" class="d-grid mt-4">
       <mat-form-field appearance="outline">
@@ -76,7 +76,7 @@
           <br><br>
           <span *ngSwitchCase="false">Horário de Término: {{ form!.get("endTime")?.value }}</span>
           <br><br>
-          <span *ngSwitchCase="false">Médico(s): {{ form!.get("doctorId")?.value?.join(', ') }}</span>
+          <span *ngSwitchCase="false">Médico(s): {{ form!.get("doctor")?.value?.join(', ') }}</span>
         </mat-card-content>
       </mat-card>
 

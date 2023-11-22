@@ -4,6 +4,7 @@ import { ShellComponent } from './shell.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ShellRoutingModule } from './shell-routing.module';
 
 
 
@@ -14,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    ShellRoutingModule,
     MatToolbarModule,
     MatSidenavModule
   ],

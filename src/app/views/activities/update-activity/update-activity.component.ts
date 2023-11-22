@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivitiesService } from '../services/activities.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from 'src/app/core/notification/services/notification.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
+import { NotificationService } from 'src/app/core/notification/services/notification.service';
+import { DoctorListViewModel } from '../../doctors/models/doctor-list.view-model';
 import { ActivityFormsViewModel } from '../models/activity-forms.view-model';
 import { TypeActivityDisplayNames } from '../models/type-activity.enum';
-import { DoctorListViewModel } from '../../doctors/models/doctor-list.view-model';
+import { ActivitiesService } from '../services/activities.service';
 
 @Component({
-  selector: 'app-add-activity',
-  templateUrl: './add-activity.component.html',
-  styleUrls: ['./add-activity.component.scss']
+  selector: 'app-update-activity',
+  templateUrl: './update-activity.component.html',
+  styleUrls: ['./update-activity.component.scss']
 })
-export class AddActivityComponent {
+export class UpdateActivityComponent {
   form?: FormGroup;
   doctors$?: Observable<DoctorListViewModel[]>;
   typeActivityOptions = Object.values(TypeActivityDisplayNames);
@@ -36,20 +36,25 @@ export class AddActivityComponent {
       selectedDoctors: [undefined, [Validators.required]],
     });
 
+    const activity = this.route.snapshot.data['activity'];
+    this.form.patchValue(activity);
+
     this.doctors$ = this.route.data.pipe(
       map((data) => data['doctor'])
     );
   }
 
   save(): void {
-    this.activitiesService.add(this.form?.value).subscribe({
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    this.activitiesService.update(id, this.form?.value).subscribe({
       next: (res) => this.handleSuccess(res),
       error: (err) => this.handleFail(err),
     });
   }
 
   handleSuccess(res: ActivityFormsViewModel) {
-    this.notification.success(`A atividade ${res.type} foi cadastrada com sucesso`)
+    this.notification.success(`A atividade ${res.type} foi editada com sucesso`)
 
     this.router.navigate(['/activities', 'list']);
   }

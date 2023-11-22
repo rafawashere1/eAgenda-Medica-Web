@@ -9,12 +9,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DoctorsModule } from '../doctors/doctors.module';
 import { ActivitiesService } from './services/activities.service';
 import { AddActivityComponent } from './add-activity/add-activity.component';
+import { UpdateActivityComponent } from './update-activity/update-activity.component';
 
 
 @NgModule({
   declarations: [
     ListActivitiesComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    UpdateActivityComponent
   ],
   imports: [
     SharedModule,

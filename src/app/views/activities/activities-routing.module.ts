@@ -1,19 +1,20 @@
 import { NgModule, inject } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
 import { ListActivitiesComponent } from './list-activities/list-activities.component';
 import { ActivitiesService } from './services/activities.service';
 import { AddActivityComponent } from './add-activity/add-activity.component';
 import { doctorListResolver } from '../doctors/services/list-doctors.resolver';
+import { UpdateActivityComponent } from './update-activity/update-activity.component';
 
-// const activityFormsResolver = (route: ActivatedRouteSnapshot) => {
-//   return inject(ActivitiesService).getById(route.paramMap.get('id')!)
-// }
+const activityFormsResolver = (route: ActivatedRouteSnapshot) => {
+  return inject(ActivitiesService).getById(route.paramMap.get('id')!)
+}
 
-// const activityDetailResolver = (route: ActivatedRouteSnapshot) => {
-//   return inject(ActivitiesService).getFullDoctorById(
-//     route.paramMap.get('id')!
-//   );
-// };
+const activityDetailResolver = (route: ActivatedRouteSnapshot) => {
+  return inject(ActivitiesService).getFullDoctorById(
+    route.paramMap.get('id')!
+  );
+};
 
 const activityListResolver = () => {
   return inject(ActivitiesService).GetAll();
@@ -35,11 +36,13 @@ const routes: Routes = [
     component: AddActivityComponent,
     resolve: { doctor: doctorListResolver }
   },
-  // {
-  //   path: 'update/:id',
-  //   component: UpdateDoctorComponent,
-  //   resolve: { doctor: doctorFormsResolver}
-  // },
+  {
+    path: 'update/:id',
+    component: UpdateActivityComponent,
+    resolve: {
+      activity: activityFormsResolver,
+      doctor: doctorListResolver}
+  },
   // {
   //   path: 'remove/:id',
   //   component: RemoveDoctorComponent,

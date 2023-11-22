@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ActivityFormsViewModel } from "../models/activity-forms.view-model";
-import { Observable, catchError, map, throwError } from "rxjs";
+import { Observable, catchError, map, tap, throwError } from "rxjs";
 import { ActivityListViewModel } from "../models/activity-list.view-model";
 import { ActivityDetailViewModel } from "../models/activity-detail.view-model";
 
@@ -17,13 +17,15 @@ export class ActivitiesService {
       .pipe(map((res) => res.data),
     catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
-
+  
   update(id: string, activity: ActivityFormsViewModel): Observable<ActivityFormsViewModel> {
     const url = `${this.API_URL}/${id}`;
-
+  
     return this.http.put<any>(url, activity)
-    .pipe(map((res) => res.data),
-    catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
+      .pipe(
+        map((res) => res.data),
+        catchError((err: HttpErrorResponse) => this.handleHttpError(err))
+      );
   }
 
   remove(id: string): Observable<any> {

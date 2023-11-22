@@ -5,7 +5,7 @@ import { Observable, map, switchMap } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification/services/notification.service';
 import { DoctorListViewModel } from '../../doctors/models/doctor-list.view-model';
 import { ActivityFormsViewModel } from '../models/activity-forms.view-model';
-import { TypeActivityDisplayNames } from '../models/type-activity.enum';
+import { TypeActivity, TypeActivityDisplayNames } from '../models/type-activity.enum';
 import { ActivitiesService } from '../services/activities.service';
 
 @Component({
@@ -28,10 +28,13 @@ export class UpdateActivityComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      typeActivity: [null, [Validators.required]],
-      startTime: ['', [Validators.required, this.timeFormatValidator()]],
-      endTime: ['', [Validators.required, this.timeFormatValidator()]],
-      tema: ['primary'],
+      title: ['', [Validators.required]],
+      type: [0, [Validators.required]],
+      startDay: ['', [Validators.required]],
+      endDay: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+      theme: ['primary'],
 
       selectedDoctors: [undefined, [Validators.required]],
     });
@@ -43,21 +46,29 @@ export class UpdateActivityComponent {
       map((data) => data['doctor'])
     );
   }
-
+  
   save(): void {
+    console.log('Form Values:', this.form?.value);
+  
+    const formValue = {
+      ...this.form?.value,
+      type: this.mapTypeToEnum(this.form?.get('type')?.value as string),
+    };
+  
+    console.log(formValue)
     this.route.paramMap
-    .pipe(
-      map((params) => params.get('id')!),
-      switchMap((id) => this.activitiesService.update(id, this.form?.value))
-    )
-    .subscribe({
-      next: (res) => this.handleSuccess(res),
-      error: (err) => this.handleFail(err),
-    });
+      .pipe(
+        map((params) => params.get('id')!),
+        switchMap((id) => this.activitiesService.update(id, formValue))
+      )
+      .subscribe({
+        next: (res) => this.handleSuccess(res),
+        error: (err) => this.handleFail(err),
+      });
   }
 
   handleSuccess(res: ActivityFormsViewModel) {
-    this.notification.success(`A atividade ${res.type} foi editada com sucesso`)
+    this.notification.success(`A atividade ${res.title} foi editada com sucesso`)
 
     this.router.navigate(['/activities', 'list']);
   }
@@ -66,15 +77,11 @@ export class UpdateActivityComponent {
     this.notification.error(err.message)
   }
 
-  private timeFormatValidator() {
-    return (control: any) => {
-      const validPattern = /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/;
-
-      if (!validPattern.test(control.value)) {
-        return { invalidTimeFormat: true };
-      }
-
-      return null;
-    };
+  mapTypeToEnum(type: string): TypeActivity | undefined {
+    const enumValues = Object.values(TypeActivity);
+  
+    const foundKey = enumValues.find((key) => TypeActivityDisplayNames[key] === type);
+  
+    return foundKey as TypeActivity | undefined;
   }
 }

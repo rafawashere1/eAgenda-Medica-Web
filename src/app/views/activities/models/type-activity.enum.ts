@@ -3,7 +3,10 @@ export enum TypeActivity {
   Appointment = 1
 }
 
-export const TypeActivityDisplayNames = {
+export const TypeActivityDisplayNames: {
+  [key: number]: string;
+  [key: string]: string;
+} = {
   [TypeActivity.Surgery]: 'Cirurgia',
-  [TypeActivity.Appointment]: 'Consulta'
+  [TypeActivity.Appointment]: 'Consulta',
 };

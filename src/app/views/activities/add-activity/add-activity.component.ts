@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/core/notification/services/notification.service';
 import { Observable, map } from 'rxjs';
 import { ActivityFormsViewModel } from '../models/activity-forms.view-model';
-import { TypeActivityDisplayNames } from '../models/type-activity.enum';
+import { TypeActivity, TypeActivityDisplayNames } from '../models/type-activity.enum';
 import { DoctorListViewModel } from '../../doctors/models/doctor-list.view-model';
 
 @Component({
@@ -28,10 +28,13 @@ export class AddActivityComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      typeActivity: [null, [Validators.required]],
-      startTime: ['', [Validators.required, this.timeFormatValidator()]],
-      endTime: ['', [Validators.required, this.timeFormatValidator()]],
-      tema: ['primary'],
+      title: ['', [Validators.required]],
+      type: [null, [Validators.required]],
+      startDay: ['', [Validators.required]],
+      endDay: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+      theme: ['primary'],
 
       selectedDoctors: [undefined, [Validators.required]],
     });
@@ -42,7 +45,12 @@ export class AddActivityComponent {
   }
 
   save(): void {
-    this.activitiesService.add(this.form?.value).subscribe({
+    const formValue = {
+      ...this.form?.value,
+      type: this.mapTypeToEnum(this.form?.get('type')?.value as string),
+    };
+
+    this.activitiesService.add(formValue).subscribe({
       next: (res) => this.handleSuccess(res),
       error: (err) => this.handleFail(err),
     });
@@ -58,15 +66,11 @@ export class AddActivityComponent {
     this.notification.error(err.message)
   }
 
-  private timeFormatValidator() {
-    return (control: any) => {
-      const validPattern = /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/;
-
-      if (!validPattern.test(control.value)) {
-        return { invalidTimeFormat: true };
-      }
-
-      return null;
-    };
+  mapTypeToEnum(type: string): TypeActivity | undefined {
+    const enumValues = Object.values(TypeActivity);
+  
+    const foundKey = enumValues.find((key) => TypeActivityDisplayNames[key] === type);
+  
+    return foundKey as TypeActivity | undefined;
   }
 }

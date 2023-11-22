@@ -7,6 +7,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DoctorsModule } from '../doctors/doctors.module';
 import { ActivitiesService } from './services/activities.service';
 import { AddActivityComponent } from './add-activity/add-activity.component';
@@ -29,7 +30,8 @@ import { RemoveActivityComponent } from './remove-activity/remove-activity.compo
     MatRadioModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule
   ],
   providers: [
     ActivitiesService

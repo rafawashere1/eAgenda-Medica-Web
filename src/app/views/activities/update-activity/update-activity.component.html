@@ -3,13 +3,33 @@
     <h1 class="fs-2">Editar Atividade</h1>
 
     <form [formGroup]="form!" (ngSubmit)="save()" class="d-grid mt-4">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Título da atividade</mat-label>
+        <input type="text" formControlName="title" matInput />
+      </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>Tipo da atividade</mat-label>
-        <mat-select formControlName="typeActivity">
+        <mat-select formControlName="type">
           <mat-option *ngFor="let option of typeActivityOptions" [value]="option">
             {{ option }}
           </mat-option>
         </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="mb-3">
+        <mat-label>Dia de Início</mat-label>
+        <input matInput [matDatepicker]="startPicker" formControlName="startDay">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="mb-3">
+        <mat-label>Dia de Término</mat-label>
+        <input matInput [matDatepicker]="endPicker" formControlName="endDay">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="mb-3">
@@ -29,7 +49,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Médico</mat-label>
+        <mat-label>Médico(s)</mat-label>
         <mat-select formControlName="selectedDoctors" multiple placeholder="Escolha os médicos">
           <mat-option *ngFor="let doctor of doctors$ | async" [value]="doctor.id">
             {{ doctor.name }}
@@ -40,7 +60,7 @@
       <div class="d-grid my-2">
         <mat-label>Tema</mat-label>
 
-        <mat-radio-group formControlName="tema">
+        <mat-radio-group formControlName="theme">
           <mat-radio-button value="primary">Padrão</mat-radio-button>
           <mat-radio-button value="accent">Aviso</mat-radio-button>
           <mat-radio-button value="warn">Urgente</mat-radio-button>
@@ -49,16 +69,16 @@
 
       <mat-card class="col">
         <mat-card-header>
-          <mat-card-title [ngSwitch]="form!.get('typeActivity')?.pristine">
+          <mat-card-title [ngSwitch]="form!.get('type')?.pristine">
             <span *ngSwitchCase="true">Esta é a sua atividade</span>
-            <span *ngSwitchCase="false">{{ form!.get("typeActivity")?.value }}</span>
+            <span *ngSwitchCase="false">{{ form!.get("type")?.value }}</span>
           </mat-card-title>
 
           <mat-chip
-            [ngSwitch]="form!.get('tema')?.value"
+            [ngSwitch]="form!.get('theme')?.value"
             class="ms-auto"
             [highlighted]="true"
-            [color]="form!.get('tema')?.value"
+            [color]="form!.get('theme')?.value"
           >
             <span *ngSwitchCase="'primary'">Padrão</span>
             <span *ngSwitchCase="'accent'">Aviso</span>

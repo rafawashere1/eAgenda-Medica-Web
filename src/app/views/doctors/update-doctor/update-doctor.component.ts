@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DoctorFormsViewModel } from '../models/doctor-forms.view-model';
 import { DoctorsService } from '../services/doctors.service';
 import { NotificationService } from 'src/app/core/notification/services/notification.service';
+import { map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-update-doctor',
@@ -32,9 +33,12 @@ export class UpdateDoctorComponent implements OnInit {
   }
 
   save(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
-
-    this.doctorsService.update(id, this.form?.value).subscribe({
+    this.route.paramMap
+    .pipe(
+      map((params) => params.get('id')!),
+      switchMap((id) => this.doctorsService.update(id, this.form?.value))
+    )
+    .subscribe({
       next: (res) => this.handleSuccess(res),
       error: (err) => this.handleFail(err),
     });

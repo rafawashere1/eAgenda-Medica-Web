@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification/services/notification.service';
 import { DoctorListViewModel } from '../../doctors/models/doctor-list.view-model';
 import { ActivityFormsViewModel } from '../models/activity-forms.view-model';
@@ -45,9 +45,12 @@ export class UpdateActivityComponent {
   }
 
   save(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
-
-    this.activitiesService.update(id, this.form?.value).subscribe({
+    this.route.paramMap
+    .pipe(
+      map((params) => params.get('id')!),
+      switchMap((id) => this.activitiesService.update(id, this.form?.value))
+    )
+    .subscribe({
       next: (res) => this.handleSuccess(res),
       error: (err) => this.handleFail(err),
     });

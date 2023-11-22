@@ -69,14 +69,9 @@
           [ngSwitch]="form!.get('startTime')?.pristine"
           class="mt-3 fs-6"
         >
-          <span *ngSwitchCase="true"
-            >Preencha os campos para ver como ficará a atividade.</span
-          >
-          <span *ngSwitchCase="false">Horário de Início: {{ form!.get("startTime")?.value }}</span>
+          <span>Horário de Início: {{ form!.get("startTime")?.value }}</span>
           <br><br>
-          <span *ngSwitchCase="false">Horário de Término: {{ form!.get("endTime")?.value }}</span>
-          <br><br>
-          <span *ngSwitchCase="false">Médico(s): {{ form!.get("doctor")?.value?.join(', ') }}</span>
+          <span>Horário de Término: {{ form!.get("endTime")?.value }}</span>
         </mat-card-content>
       </mat-card>
 

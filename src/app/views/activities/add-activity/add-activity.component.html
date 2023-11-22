@@ -14,7 +14,7 @@
 
       <mat-form-field appearance="outline" class="mb-3">
         <mat-label>Horário de Início</mat-label>
-        <input matInput formControlName="startTime" placeholder="Enter time">
+        <input matInput formControlName="startTime">
         <mat-error *ngIf="form!.get('startTime')?.hasError('invalidTimeFormat')">
           Horário de início inválido. Exemplo de horário válido: 12:00:00.
         </mat-error>
@@ -22,7 +22,7 @@
       
       <mat-form-field appearance="outline" class="mb-3">
         <mat-label>Horário de Término</mat-label>
-        <input matInput formControlName="endTime" placeholder="Enter time">
+        <input matInput formControlName="endTime">
         <mat-error *ngIf="form!.get('endTime')?.hasError('invalidTimeFormat')">
           Horário de término inválido. Exemplo de horário válido: 12:00:00.
         </mat-error>
@@ -30,17 +30,11 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Médico</mat-label>
-        <input
-          matInput
-          [matAutocomplete]="auto"
-          formControlName="doctorId"
-          placeholder="Escolha os médicos"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
+        <mat-select formControlName="doctorId" multiple placeholder="Escolha os médicos">
           <mat-option *ngFor="let doctor of doctors$ | async" [value]="doctor.name">
             {{ doctor.name }}
           </mat-option>
-        </mat-autocomplete>
+        </mat-select>
       </mat-form-field>
 
       <div class="d-grid my-2">
@@ -78,9 +72,11 @@
           <span *ngSwitchCase="true"
             >Preencha os campos para ver como ficará a atividade.</span
           >
-          <span *ngSwitchCase="false">{{ form!.get("startTime")?.value }}</span>
-          <br>
-          <span *ngSwitchCase="false">{{ form!.get("endTime")?.value }}</span>
+          <span *ngSwitchCase="false">Horário de Início: {{ form!.get("startTime")?.value }}</span>
+          <br><br>
+          <span *ngSwitchCase="false">Horário de Término: {{ form!.get("endTime")?.value }}</span>
+          <br><br>
+          <span *ngSwitchCase="false">Médico(s): {{ form!.get("doctorId")?.value?.join(', ') }}</span>
         </mat-card-content>
       </mat-card>
 

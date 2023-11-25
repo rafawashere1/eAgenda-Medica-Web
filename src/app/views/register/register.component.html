@@ -1,0 +1,49 @@
+<section class="mt-2">
+  <div class="container py-3 px-3 px-md-5">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-12 col-md-6">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" style="max-width: 100%; height: auto;"
+          alt="Phone image"
+        />
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <form [formGroup]="form!" (ngSubmit)="register()">
+          <h1 class="text-primary fw-semibold">Registro de Usuário</h1>
+
+          <mat-form-field appearance="fill" class="my-3 custom-input">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" [ngClass]="invalidField('name') ? 'is-invalid' : ''" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="my-3 custom-input">
+            <mat-label>Nome de Usuário</mat-label>
+            <input matInput formControlName="login" [ngClass]="invalidField('login') ? 'is-invalid' : ''" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="my-3 custom-input">
+            <mat-label>Endereço de Email</mat-label>
+            <input matInput formControlName="email" [ngClass]="invalidField('email') ? 'is-invalid' : ''" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="my-3 custom-input">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" [ngClass]="invalidField('password') ? 'is-invalid' : ''" />
+          </mat-form-field>
+
+          <div class="card-footer g-grid d-flex gap-1 mt-4">
+            <button mat-raised-button color="primary" type="submit">
+              <mat-icon class="me-2">save</mat-icon>
+              Registrar
+            </button>
+            <button mat-raised-button color="warn" routerLink="/accounts/register" type="button">
+              <mat-icon class="me-2">arrow_left</mat-icon>
+              Voltar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

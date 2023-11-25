@@ -20,10 +20,10 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="d-flex align-items-center gap-2">eAgenda Médica <mat-icon>medical_information</mat-icon></span>
+      <a class="d-flex align-items-center gap-2 text-decoration-none text-reset" routerLink="/dashboard">eAgenda Médica <mat-icon>medical_information</mat-icon></a>
     </mat-toolbar>
     <main class="p-4">
-      <ng-content></ng-content>
+      <ng-content></ng-content> 
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

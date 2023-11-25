@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShellModule } from './shell/shell.module';
 import { NotificationModule } from './notification/notification.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -10,10 +11,12 @@ import { NotificationModule } from './notification/notification.module';
   imports: [
     CommonModule,
     ShellModule,
-    NotificationModule
+    NotificationModule,
+    AuthModule
   ],
   exports: [
-    ShellModule
+    ShellModule,
+    AuthModule
   ]
 })
 export class CoreModule { }

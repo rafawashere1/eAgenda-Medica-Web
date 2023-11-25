@@ -18,7 +18,5 @@ export class ListDoctorsComponent implements OnInit {
     this.doctors$ = this.route.data.pipe(
       map((data) => data['doctor'])
     );
-
-    this.notification.success('Médicos obtidos com sucesso!')
   }
 }

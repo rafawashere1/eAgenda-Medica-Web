@@ -53,6 +53,12 @@ export class DoctorsService {
       catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
   }
 
+  getDoctorsSortedByWorkedHours(): Observable<DoctorListViewModel[]> {
+    return this.http.get<any>(`${this.API_URL}/top-10-workers`)
+    .pipe(map((res) => res.data),
+    catchError((err: HttpErrorResponse) => this.handleHttpError(err)));
+  }
+
   private handleHttpError(error: HttpErrorResponse) {
     let errorMessage  = '';
 

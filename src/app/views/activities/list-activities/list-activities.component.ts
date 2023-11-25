@@ -12,11 +12,9 @@ import { NotificationService } from 'src/app/core/notification/services/notifica
 export class ListActivitiesComponent implements OnInit {
   activities$?: Observable<ActivityListViewModel[]>;
 
-  constructor(private route: ActivatedRoute, private notification: NotificationService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.activities$ = this.route.data.pipe(map((data) => data['activity']));
-
-    this.notification.success('Atividades obtidas com sucesso!')
   }
 }

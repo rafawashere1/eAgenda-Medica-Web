@@ -6,6 +6,7 @@ import { UpdateDoctorComponent } from './update-doctor/update-doctor.component';
 import { DoctorsService } from './services/doctors.service';
 import { RemoveDoctorComponent } from './remove-doctor/remove-doctor.component';
 import { doctorListResolver } from './services/list-doctors.resolver';
+import { Top10Component } from './top-10/top-10.component';
 
 const doctorFormsResolver = (route: ActivatedRouteSnapshot) => {
   return inject(DoctorsService).getById(route.paramMap.get('id')!)
@@ -15,6 +16,10 @@ const doctorDetailResolver = (route: ActivatedRouteSnapshot) => {
   return inject(DoctorsService).getFullDoctorById(
     route.paramMap.get('id')!
   );
+};
+
+const doctorTop10Resolver = () => {
+  return inject(DoctorsService).getDoctorsSortedByWorkedHours();
 };
 
 const routes: Routes = [
@@ -35,12 +40,17 @@ const routes: Routes = [
   {
     path: 'update/:id',
     component: UpdateDoctorComponent,
-    resolve: { doctor: doctorFormsResolver}
+    resolve: { doctor: doctorFormsResolver }
   },
   {
     path: 'remove/:id',
     component: RemoveDoctorComponent,
-    resolve: { doctor: doctorDetailResolver}
+    resolve: { doctor: doctorDetailResolver }
+  },
+  {
+    path: 'top-10',
+    component: Top10Component,
+    resolve: { doctor: doctorTop10Resolver }
   },
 ];
 

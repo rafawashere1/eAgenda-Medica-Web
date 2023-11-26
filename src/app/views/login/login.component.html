@@ -1,4 +1,4 @@
-<section class="mt-2">
+<section class="mt-5 d-flex align-items-center justify-content-center">
   <div class="container py-3 px-3 px-md-5">
     <div class="row d-flex align-items-center justify-content-center h-100">
       <div class="col-12 col-md-6">
@@ -10,7 +10,7 @@
       </div>
       <div class="col-12 col-md-6 col-lg-4">
         <form [formGroup]="form!" (ngSubmit)="login()">
-          <h1 class="text-primary fw-semibold">Registro de Usuário</h1>
+          <h1 class="text-primary fw-semibold">Faça Login na e-Agenda Médica</h1>
 
           <mat-form-field appearance="fill" class="my-3 custom-input">
             <mat-label>Nome de Usuário</mat-label>
@@ -22,14 +22,15 @@
             <input matInput formControlName="password" [ngClass]="invalidField('password') ? 'is-invalid' : ''" />
           </mat-form-field>
 
+          <div class="form-group">
+            Ainda não é um usuário?
+            <a role="button" class="text-primary text-decoration-none" routerLink="/register">Clique aqui e cadastre-se!</a>
+          </div>
+
           <div class="card-footer g-grid d-flex gap-1 mt-4">
             <button mat-raised-button color="primary" type="submit">
-              <mat-icon class="me-2">save</mat-icon>
-              Registrar
-            </button>
-            <button mat-raised-button color="warn" routerLink="/accounts/register" type="button">
-              <mat-icon class="me-2">arrow_left</mat-icon>
-              Voltar
+              <mat-icon class="me-2">login</mat-icon>
+              Logar
             </button>
           </div>
         </form>

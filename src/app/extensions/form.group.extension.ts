@@ -19,11 +19,13 @@ FormGroup.prototype.validate = function() {
         for (let error of Object.keys(control.errors)) {
           switch (error) {
             case 'required':
-              errors.push(`O campo "${field}" é obrigatório!`);
+              errors.push(`Faltam campos a serem preenchidos!`);
               break;
             case 'email':
-              errors.push(`O campo "${field}" deve seguir um formato válido!`)
+              errors.push(`Formato do email invalido!`)
               break;
+            case 'password':
+              errors.push(`Senha precisa ter no mínimo 6 caracteres`)
           }
         }
   }

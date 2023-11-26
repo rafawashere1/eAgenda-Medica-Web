@@ -23,26 +23,14 @@
     </mat-card-content>
   </mat-card>
 
-  <h2 class="mt-4">Top 10 Médicos Com Mais Horas Trabalhadas</h2>
+  <mat-card routerLink="/doctors/top-10" appCardHover class="col-12 col-md-6 col-lg-3 d-grid gap-2">
+    <mat-card-header>
+      <mat-card-title class="fs-5">Ranking</mat-card-title>
+      <mat-icon class="ms-auto">medical_services</mat-icon>
+    </mat-card-header>
 
-  <table *ngIf="(doctors$ | async) as doctors" mat-table [dataSource]="doctors" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="rank">
-      <th mat-header-cell *matHeaderCellDef>Rank</th>
-      <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nome</th>
-      <td mat-cell *matCellDef="let doctor">{{ doctor.name }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="workedHours">
-      <th mat-header-cell *matHeaderCellDef>Horas Trabalhadas</th>
-      <td mat-cell *matCellDef="let doctor">{{ doctor.workedHours | timeFormat }}</td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    <mat-card-content>
+      <span class="fs-6">Veja a lista dos médicos com mais horas trabalhadas.</span>
+    </mat-card-content>
+  </mat-card>
 </div>

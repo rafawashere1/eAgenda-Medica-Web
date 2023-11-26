@@ -31,18 +31,10 @@
     </mat-list-item>
     <mat-divider></mat-divider>
 
-  <mat-list-item>
-    <div class="d-flex justify-content-between">
-      <span>Última atividade há:</span>
-      <span>{{ doctor.lastActivity }}</span>
-    </div>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-
 <mat-list-item>
   <div class="d-flex justify-content-between">
     <span>Está em alguma atividade?</span>
-    <span>{{ doctor.currentActivity ? 'Sim' : 'Não' }}</span>
+    <span>{{ doctor.activities && doctor.activities.length > 0 ? 'Sim' : 'Não' }}</span>
   </div>
 </mat-list-item>
 <mat-divider></mat-divider>

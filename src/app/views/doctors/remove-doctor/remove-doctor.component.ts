@@ -21,7 +21,7 @@ export class RemoveDoctorComponent {
   ) {}
 
   ngOnInit(): void {
-    this.doctor$ = this.route.data.pipe(map((res) => res['doctor']));
+    this.doctor$ = this.route.data.pipe(map(res => res['doctor']));
   }
 
   confirm(): void {

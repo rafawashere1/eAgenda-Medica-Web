@@ -6,6 +6,9 @@ import { DoctorsService } from './services/doctors.service';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { UpdateDoctorComponent } from './update-doctor/update-doctor.component';
 import { RemoveDoctorComponent } from './remove-doctor/remove-doctor.component';
+import { Top10Component } from './top-10/top-10.component';
+import { TimeFormatPipe } from 'src/app/pipes/TimeFormatPipe.pipe';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { RemoveDoctorComponent } from './remove-doctor/remove-doctor.component';
     ListDoctorsComponent,
     AddDoctorComponent,
     UpdateDoctorComponent,
-    RemoveDoctorComponent
+    RemoveDoctorComponent,
+    Top10Component,
+    TimeFormatPipe
   ],
   imports: [
     DoctorsRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ],
   providers: [
     DoctorsService

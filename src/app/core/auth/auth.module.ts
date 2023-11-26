@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
-import { localStorageService } from './services/local-storage.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 
@@ -10,6 +10,6 @@ import { localStorageService } from './services/local-storage.service';
   imports: [
     CommonModule
   ],
-  providers: [AuthService, localStorageService]
+  providers: [AuthService, LocalStorageService]
 })
 export class AuthModule { }

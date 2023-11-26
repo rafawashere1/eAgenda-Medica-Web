@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { TokenViewModel } from "../models/token.view-model";
 
 @Injectable()
-export class localStorageService {
+export class LocalStorageService {
   private keyLocalStorage: string = 'eAgenda-medica-data'
 
   public saveUserLocalData(user: TokenViewModel) {

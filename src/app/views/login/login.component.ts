@@ -38,8 +38,7 @@ export class LoginComponent {
 
       return;
     }
-
-    console.log(this.form?.value)
+    
     this.authService.login(this.form?.value).subscribe({
       next: (res) => this.handleSuccess(res),
       error: (err) => this.handleFail(err),

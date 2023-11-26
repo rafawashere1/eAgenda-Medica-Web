@@ -11,7 +11,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="toolbar">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -21,9 +21,13 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a class="d-flex align-items-center gap-2 text-decoration-none text-reset" routerLink="/dashboard">eAgenda Médica <mat-icon>medical_information</mat-icon></a>
+      <span class="flex-grow-1"></span>
+      <button mat-icon-button (click)="logout()" matTooltip="Sair">
+        <span><mat-icon>exit_to_app</mat-icon></span>
+      </button>
     </mat-toolbar>
     <main class="p-4">
-      <ng-content></ng-content> 
+      <ng-content></ng-content>
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

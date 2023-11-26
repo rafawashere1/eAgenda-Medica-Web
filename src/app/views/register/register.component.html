@@ -32,14 +32,15 @@
             <input matInput formControlName="password" [ngClass]="invalidField('password') ? 'is-invalid' : ''" />
           </mat-form-field>
 
+          <div class="form-group">
+            Já tem conta?
+            <a role="button" class="text-primary text-decoration-none" routerLink="/login">Clique para fazer login!</a>
+          </div>
+
           <div class="card-footer g-grid d-flex gap-1 mt-4">
             <button mat-raised-button color="primary" type="submit">
               <mat-icon class="me-2">save</mat-icon>
               Registrar
-            </button>
-            <button mat-raised-button color="warn" routerLink="/accounts/register" type="button">
-              <mat-icon class="me-2">arrow_left</mat-icon>
-              Voltar
             </button>
           </div>
         </form>

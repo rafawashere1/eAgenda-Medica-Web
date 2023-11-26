@@ -6,7 +6,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { RegisterUserViewModel } from "../models/register-user.view-model";
 import { TokenViewModel } from "../models/token.view-model";
 import { AuthUserViewModel } from "../models/auth-user.view-model";
-import { localStorageService } from "./local-storage.service";
+import { LocalStorageService } from "./local-storage.service";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
     })
   };
 
-  constructor(private http: HttpClient, private localStorage: localStorageService) {
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) {
     this.authenticatedUser = new BehaviorSubject<UserTokenViewModel | undefined>(undefined)
   }
 
@@ -33,23 +33,11 @@ export class AuthService {
   }
   
   public register(user: RegisterUserViewModel): Observable<TokenViewModel> {
-    console.log('Sending registration request:', user);
-  
-    return this.http.post<any>(this.endpointRegister, user)
-      .pipe(
-        map((res) => {
-          console.log('Registration response:', res);
-          return res.data;
-        }),
-        tap((data: TokenViewModel) => {
-          console.log('Saving user local data:', data);
-          this.localStorage.saveUserLocalData(data);
-        }),
-        catchError((err) => {
-          console.error('Error during registration:', err);
-          return this.handleHttpError(err);
-        })
-      );
+    return this.http.post<any>(this.endpointRegister, user).pipe(
+      map((res) => res.data),
+      tap((data: TokenViewModel) => this.localStorage.saveUserLocalData(data)),
+      catchError((err) => this.handleHttpError(err))
+    );
   }
 
   public login(user: AuthUserViewModel): Observable<TokenViewModel> {
@@ -82,7 +70,7 @@ export class AuthService {
     if (tokenIsValid) this.notifyLogin(data.user);
   }
 
-  private notifyLogin(user: UserTokenViewModel): void {
+  public notifyLogin(user: UserTokenViewModel): void {
     this.authenticatedUser.next(user);
   }
 

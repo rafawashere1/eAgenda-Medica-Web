@@ -1,3 +1,7 @@
-<app-shell>
+<app-shell *ngIf="(authenticatedUser$ | async); else auth">
   <router-outlet></router-outlet>
 </app-shell>
+
+<ng-template #auth>
+  <router-outlet></router-outlet>
+</ng-template>

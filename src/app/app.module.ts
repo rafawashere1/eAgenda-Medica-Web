@@ -11,6 +11,9 @@ import { RegisterModule } from './views/register/register.module';
 import { LoginModule } from './views/login/login.module';
 import { AuthService } from './core/auth/services/auth.service';
 import { httpTokenInterception } from './core/auth/services/http-token.interceptor';
+import { AuthModule } from './core/auth/auth.module';
+import { LocalStorageService } from './core/auth/services/local-storage.service';
+import { SharedModule } from './shared/shared.module';
 
 function loginSavedUserFactory(authService: AuthService) {
   return () => authService.loginSavedUser();
@@ -27,7 +30,9 @@ function loginSavedUserFactory(authService: AuthService) {
     CoreModule,
     RegisterModule,
     LoginModule,
-    DashboardModule
+    DashboardModule,
+    AuthModule,
+    SharedModule
   ],
   providers: [
     {
@@ -36,7 +41,8 @@ function loginSavedUserFactory(authService: AuthService) {
       deps: [AuthService],
       multi: true,
     },
-    provideHttpClient(withInterceptors([httpTokenInterception]))
+    provideHttpClient(withInterceptors([httpTokenInterception])),
+    LocalStorageService
   ],
   bootstrap: [AppComponent]
 })

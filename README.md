@@ -1,27 +1,34 @@
-# EAgendaMedica
+# e-AGENDA MÉDICA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+## Visão Geral
 
-## Development server
+O projeto **e-AGENDA MÉDICA** é uma aplicação web desenvolvida para gerenciar o cronograma de atividades em uma clínica médica. Os médicos podem agendar consultas e cirurgias, com regras específicas para o agendamento e períodos de recuperação.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Funcionalidades
 
-## Code scaffolding
+1. **Agendamento de Atividades**
+   - *Descrição:* Permite o agendamento de atividades para médicos, incluindo informações como horários de início e término, tipo de atividade e médico (ou lista de médicos) envolvidos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. **Períodos de Recuperação**
+   - *Descrição:* Após realizar uma cirurgia, é necessário um período de recuperação de 4 horas. Após uma consulta, o período de recuperação é de 20 minutos.
 
-## Build
+3. **Modificação e Exclusão de Atividades**
+   - *Descrição:* Oferece a capacidade de modificar os horários de uma atividade existente e excluir atividades já agendadas.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. **Detecção de Conflitos de Horário**
+   - *Descrição:* Indica quando a atividade de um médico entra em conflito com outras atividades do mesmo médico, permitindo ajustes nos horários para resolver conflitos.
 
-## Running unit tests
+5. **Ranking de Médicos**
+   - *Descrição:* Apresenta uma lista dos 10 médicos que mais horas trabalharam dentro de um período específico.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Dados Iniciais
 
-## Running end-to-end tests
+- *Descrição:* O aplicativo permite a definição de dados iniciais, como informações sobre os médicos e algumas atividades atribuídas.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Tecnologias Utilizadas
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Linguagens:** C#, TypeScript
+- **Frameworks:** ASP.NET Core, Entity Framework Core
+- **Banco de Dados:** SQL Server
+- **Testes:** MSTest, Moq
+- **Frontend:** Angular, HTML, CSS

@@ -30,8 +30,11 @@ export class ActivitiesService {
 
   remove(id: string): Observable<any> {
     const url = `${this.API_URL}/${id}`;
-
-    return this.http.delete<any>(url);
+  
+    return this.http.delete<any>(url)
+      .pipe(
+        catchError((err: HttpErrorResponse) => this.handleHttpError(err))
+      );
   }
 
   getById(id: string): Observable<ActivityFormsViewModel> {

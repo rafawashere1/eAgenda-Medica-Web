@@ -108,11 +108,46 @@
             ],
             "scripts": []
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "eAgenda-Medica:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "eAgenda-Medica:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "eAgenda-Medica:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "eAgenda-Medica:serve:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "fe55923f-a749-44bd-9871-79d1692b661c"
+    "analytics": "fe55923f-a749-44bd-9871-79d1692b661c",
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }

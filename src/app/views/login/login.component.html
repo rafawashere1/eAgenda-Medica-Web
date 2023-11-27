@@ -14,12 +14,12 @@
 
           <mat-form-field appearance="fill" class="my-3 custom-input">
             <mat-label>Nome de Usuário</mat-label>
-            <input matInput formControlName="login" [ngClass]="invalidField('login') ? 'is-invalid' : ''" />
+            <input data-cy="txtLogin" matInput formControlName="login" [ngClass]="invalidField('login') ? 'is-invalid' : ''" />
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="my-3 custom-input">
             <mat-label>Senha</mat-label>
-            <input matInput formControlName="password" [ngClass]="invalidField('password') ? 'is-invalid' : ''" />
+            <input data-cy="txtPassword" matInput formControlName="password" [ngClass]="invalidField('password') ? 'is-invalid' : ''" />
           </mat-form-field>
 
           <div class="form-group">
@@ -28,7 +28,7 @@
           </div>
 
           <div class="card-footer g-grid d-flex gap-1 mt-4">
-            <button mat-raised-button color="primary" type="submit">
+            <button data-cy="btnLogin" mat-raised-button color="primary" type="submit">
               <mat-icon class="me-2">login</mat-icon>
               Logar
             </button>

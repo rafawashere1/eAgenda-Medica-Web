@@ -57,7 +57,7 @@ export class AddActivityComponent {
   }
 
   handleSuccess(res: ActivityFormsViewModel) {
-    this.notification.success(`A atividade ${res.type} foi cadastrada com sucesso`)
+    this.notification.success(`A atividade ${res.title} foi cadastrada com sucesso`)
 
     this.router.navigate(['/activities', 'list']);
   }
